@@ -5,9 +5,7 @@ include 'koneksi.php';
 $sql = mysqli_query($koneksi,"select * from user");
 $halaman = "penjualan_data";
 
-if(empty($_SESSION['user']) or empty($_SESSION['pass'] == 0)){
-  header('location: login.php');
-}else{
+if(!empty($_SESSION['user']) or !empty($_SESSION['pass'])){
 ?>
 <?php include 'template/header.php'; ?>
   <body class="skin-blue sidebar-mini sidebar-collapse">
@@ -120,4 +118,8 @@ if(empty($_SESSION['user']) or empty($_SESSION['pass'] == 0)){
         margin-left: 0;
       }
     </style>
-<?php } ?> 
+<?php
+}else{
+    header('location: login.php');
+}
+?>

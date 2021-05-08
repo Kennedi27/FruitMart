@@ -5,9 +5,7 @@ include 'koneksi.php';
 $sql = mysqli_query($koneksi,"select * from user");
 $halaman = "penjualan";
 
-if(empty($_SESSION['user']) or empty($_SESSION['pass'] == 0)){
-  header('location: login.php');
-}else{
+if(!empty($_SESSION['user']) or !empty($_SESSION['pass'])){
 ?>
 <?php 
 error_reporting(0);
@@ -272,4 +270,8 @@ error_reporting(0);
         bottom: 0;
       }
     </style>
-    <?php } ?>
+   <?php
+}else{
+    header('location: login.php');
+}
+?>

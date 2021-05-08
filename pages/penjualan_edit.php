@@ -1,12 +1,10 @@
 <?php
 session_start();
 $akses=$_SESSION['user'];
- include 'koneksi.php';
- $sql = mysqli_query($koneksi,"select * from user");
+include 'koneksi.php';
+$sql = mysqli_query($koneksi,"select * from user");
 
- if(empty($_SESSION['user']) or empty($_SESSION['pass'] == 0)){
-  header('location: login.php');
-}else{
+if(!empty($_SESSION['user']) or !empty($_SESSION['pass'])){
 ?>
 <?php 
 error_reporting(0);
@@ -435,4 +433,8 @@ error_reporting(0);
         display: none;
       }
 </style>
-<?php } ?>
+<?php
+}else{
+    header('location: login.php');
+}
+?>

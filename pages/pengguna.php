@@ -5,9 +5,7 @@ include 'koneksi.php';
 $sql = mysqli_query($koneksi,"SELECT * FROM user");
 $halaman = "admin";
 
-if(empty($_SESSION['user']) or empty($_SESSION['pass'] == 0)){
-  header('location: login.php');
-}else{
+if(!empty($_SESSION['user']) or !empty($_SESSION['pass'])){
 ?>
 <?php include 'template/header.php'; ?>
 
@@ -105,4 +103,8 @@ if(empty($_SESSION['user']) or empty($_SESSION['pass'] == 0)){
     position: fixed;
   }
 </style>
-<?php } ?>
+<?php
+}else{
+    header('location: login.php');
+}
+?>

@@ -2,12 +2,10 @@
 session_start();
 $akses=$_SESSION['user'];
 include 'koneksi.php';
-$sql = mysqli_query($koneksi,"select * from user");
+$sql = mysqli_query($koneksi,"SELECT * FROM user");
 $halaman = "Dashboard";
 
-if(empty($_SESSION['user']) or empty($_SESSION['pass'] == 0)){
-  header('location: login.php');
-}else{
+if(!empty($_SESSION['user'])){
 ?>
 <?php include 'template/header.php'; ?>
 <body class="skin-blue">
@@ -762,4 +760,8 @@ $(function () {
   });
 });
 </script>
-<?php } ?>
+<?php
+}else{
+header('location: login.php');
+}
+?>
